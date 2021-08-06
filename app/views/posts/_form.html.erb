@@ -1,0 +1,20 @@
+<%= form_with model: @post_form,  url: url, method: method, id: 'new_post', local: true do |f| %>
+<%= render 'shared/error_messages', model: f.object %>
+  <div class="message-field">
+    <%= f.text_field :text, placeholder: 'type a message' %>
+  </div>
+  <div class="tag-field">
+    <input id="input-tag">
+    <div id="search-result"></div>
+    <div id="add-tag-list"></div>
+  </div>
+  <div class="image-field">
+    <div class="click-upload">
+      <%#= f.file_field :image, name: 'post_form[image]'%>
+      <%= f.file_field :image %>
+    </div>
+  </div>
+  <div class="submit-btn">
+    <%= f.submit '送信' %>
+  </div>
+<% end %>
