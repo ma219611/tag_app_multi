@@ -13,6 +13,8 @@ class PostsController < ApplicationController
   end
 
   def create
+
+  binding.pry
     @post_form = PostForm.new(post_form_params)
     if @post_form.valid?
       @post_form.save
@@ -49,7 +51,9 @@ class PostsController < ApplicationController
 
   private
   def post_form_params
-    params.require(:post_form).permit(:text, :image, :tag_name)
+    a = params.require(:post_form).permit(:text, tag_names: [])
+    b = params.require(:post_form).permit(:image)
+    a.merge(b)
   end
 
   def set_post
