@@ -14,30 +14,34 @@ if (tagNameInput){
         if (XHR.response) {
           // 検索結果
           const tagName = XHR.response.keyword;
+
+          //読み取り専用になっているので操作しようとするとエラーが出てしまう
           tagName.readOnly = false;
           console.table(tagName)
 
-          // すでに表示されているタグを取得
+          //すでに表示されているタグを取得
           const RemoveAddTagList = document.querySelectorAll('.add-tag');
           const RemoveAddTagListId = []
           RemoveAddTagList.forEach((tag) => {
             RemoveAddTagListId.push(tag.value);
           });
 
-
           console.table(RemoveAddTagListId)
 
-          // 検索結果からすでに表示されているタグを削除
+        // ToDo：検索結果からすでに表示されているタグを削除
+        // 連想配列tagNameのtag_nameと、配列RemoveAddTagListのvalueが一致していれば、連想配列から要素を消したい
+
           tagName = tagName.filter(value => {
-            if(value.tag_name >= 80){
-                return true;
-            }
+
+            return ! RemoveAddTagListId.includes(value.tag_name);
+            // console.table(value.tag_name)
+            // if(value.tag_name != 80){
+            //     return true;
+            // }
         });
-          // console.log(tagName)
 
 
           tagName.forEach((tag) => {
-
 
             const childElement = document.createElement("div");
             childElement.setAttribute("class", "child");
