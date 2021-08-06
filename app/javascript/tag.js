@@ -15,30 +15,30 @@ if (tagNameInput){
           // 検索結果
           const tagName = XHR.response.keyword;
 
-          //読み取り専用になっているので操作しようとするとエラーが出てしまう
-          tagName.readOnly = false;
-          console.table(tagName)
+        //   //読み取り専用になっているので操作しようとするとエラーが出てしまう
+        //   tagName.readOnly = false;
+        //   console.table(tagName)
 
-          //すでに表示されているタグを取得
-          const RemoveAddTagList = document.querySelectorAll('.add-tag');
-          const RemoveAddTagListId = []
-          RemoveAddTagList.forEach((tag) => {
-            RemoveAddTagListId.push(tag.value);
-          });
+        //   //すでに表示されているタグを取得
+        //   const RemoveAddTagList = document.querySelectorAll('.add-tag');
+        //   const RemoveAddTagListId = []
+        //   RemoveAddTagList.forEach((tag) => {
+        //     RemoveAddTagListId.push(tag.value);
+        //   });
 
-          console.table(RemoveAddTagListId)
+        //   console.table(RemoveAddTagListId)
 
-        // ToDo：検索結果からすでに表示されているタグを削除
-        // 連想配列tagNameのtag_nameと、配列RemoveAddTagListのvalueが一致していれば、連想配列から要素を消したい
+        // // ToDo：検索結果からすでに表示されているタグを削除
+        // // 連想配列tagNameのtag_nameと、配列RemoveAddTagListのvalueが一致していれば、連想配列から要素を消したい
 
-          tagName = tagName.filter(value => {
+        //   tagName = tagName.filter(value => {
 
-            return ! RemoveAddTagListId.includes(value.tag_name);
-            // console.table(value.tag_name)
-            // if(value.tag_name != 80){
-            //     return true;
-            // }
-        });
+        //     return ! RemoveAddTagListId.includes(value.tag_name);
+        //     // console.table(value.tag_name)
+        //     // if(value.tag_name != 80){
+        //     //     return true;
+        //     // }
+        // });
 
 
           tagName.forEach((tag) => {
@@ -57,7 +57,7 @@ if (tagNameInput){
               tag_html.setAttribute("type", "text");
               tag_html.setAttribute("id", `input_${tag.id}`);
               tag_html.setAttribute("class", "add-tag");
-              tag_html.setAttribute("name", "post_form_tag[]");
+              tag_html.setAttribute("name", "post_form[tag_names][]");
               tag_html.setAttribute("value", tag.id);
               const AddTagList = document.getElementById("add-tag-list");
               AddTagList.appendChild(tag_html);
