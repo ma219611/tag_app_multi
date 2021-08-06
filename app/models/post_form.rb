@@ -5,7 +5,8 @@ class PostForm
   attr_accessor(
     :text, :image,
     :id, :created_at, :datetime, :updated_at, :datetime,
-    :tag_name
+    :tag_name,
+    tag_names: []
    )
 
   with_options presence: true do
@@ -17,6 +18,7 @@ class PostForm
   # フリマにあるけど、tag_appにはいれない
 
   def save
+    binding.pry
     post = Post.create(text: text, image: image)
 
     tag = Tag.where(tag_name: tag_name).first_or_initialize
